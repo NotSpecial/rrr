@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+<title>Is rrr open?</title>
+
+<link href='https://fonts.googleapis.com/css?family=Stalinist+One'
+      rel='stylesheet'
+      type='text/css'>
+
+<style type="text/css">
+
+
+html {
+  {% if is_open %}
+  background: url({{ url_for('static', filename='open.jpg') }})
+              no-repeat center center fixed;
+  {% else %}
+  background: url({{ url_for('static', filename='closed.jpg') }})
+              no-repeat center center fixed;
+  {% endif%}
+  background-size: cover;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+h1 {
+  font-family: 'Stalinist One', cursive;
+  color: white;
+  font-size: 5em;
+  white-space: nowrap;
+  text-shadow: 0 0 4px black;
+}
+
+.button {
+  //font-family: 'Stalinist One', cursive;
+  color: black;
+  font-size: 2em;
+
+  padding: 10px;
+  background-color: white;
+  display: inline-block;
+  text-align: center;
+  border-radius: 8px;
+  border: 2px solid white;
+  width: 6em;
+}
+
+.center_content {
+  text-align: center;
+}
+
+</style>
+
+</head>
+
+<body>
+  <div class="container">
+    <h1>RRR IS {{ "OPEN" if is_open else "CLOSED"}}</h1>
+    {% if managemode %}
+      <form method="post" class="center_content">
+        <button class="button" 
+                name="new_status" type="submit" 
+                value="{{ 'closed' if is_open else 'open' }}">
+          {{ "CLOSE" if is_open else "OPEN"}}
+        </button>
+      </form>
+    {% endif %}
+  </div>
+</body>
