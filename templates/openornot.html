@@ -9,7 +9,6 @@
 
 <style type="text/css">
 
-
 html {
   {% if is_open %}
   background: url({{ url_for('static', filename='open.jpg') }})
@@ -18,7 +17,9 @@ html {
   background: url({{ url_for('static', filename='closed.jpg') }})
               no-repeat center center fixed;
   {% endif%}
-  background-size: 100%;  // For mobile, some browsers ignore the 'cover'
+
+  /* For mobile, some browsers ignore the 'cover' */
+  background-size: 100%;
   background-size: cover;
 }
 
