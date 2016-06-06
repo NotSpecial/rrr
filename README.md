@@ -6,4 +6,4 @@ It's running on Flask, using Flask-BasicAuth to protect the manage endpoint.
 
 Data is stored using a python shelve for simplicity.
 
-All the code is in `app.py`, more info can be found there.
+All the code is in `rrr.py`, more info can be found there.
