@@ -15,7 +15,7 @@ in the terminal.
 
 import shelve
 
-from flask import Flask, render_template, request, abort
+from flask import Flask, render_template, request, abort, jsonify
 from flask_basicauth import BasicAuth
 import click
 
@@ -63,6 +63,15 @@ def open_or_not(managemode=False):
 
     return render_template("openornot.html",
                            is_open=is_open, managemode=managemode)
+
+
+@app.route('/status')
+def get_status():
+    """Return the status in json."""
+    with shelve.open(storage_name) as storage:
+        status = "open" if storage.get('is_open', False) else "closed"
+    
+    return jsonify(status=status)
 
 
 @app.route('/manage', methods=['GET', 'POST'])
